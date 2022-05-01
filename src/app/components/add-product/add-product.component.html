@@ -1,0 +1,41 @@
+<div class="add-product-component container-component">
+  <div class="component-name">add-product-component</div>
+  <div class="add-product-form">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        [(ngModel)]="product.name"
+        type="text"
+        class="form-control"
+        autocomplete="off"
+        id="name"
+      >
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        [(ngModel)]="product.price"
+        type="text"
+        class="form-control"
+        autocomplete="off"
+        id="price"
+      >
+    </div>
+    <button
+      *ngIf="isAddProduct"
+      class="btn btn-success"
+      (click)="addProduct(product)"
+    >
+      Add Product
+    </button>
+    <button
+      *ngIf="!isAddProduct"
+      class="btn btn-primary"
+      (click)="updateProduct(product)"
+    >
+      Update Product
+    </button>
+  </div>
+</div>
+
+

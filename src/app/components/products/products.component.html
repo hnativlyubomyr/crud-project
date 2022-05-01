@@ -1,0 +1,14 @@
+<div class="products-component container-component">
+  <div class="component-name">products-component</div>
+  <div>plusCount: {{plusCount}}</div>
+  <div>minusCount: {{minusCount}}</div>
+
+  <div class="products-container">
+      <app-product
+        *ngFor="let item of products"
+        [product]="item"
+        (changeCount)="changeCount($event)">
+      </app-product>
+  </div>
+
+</div>
