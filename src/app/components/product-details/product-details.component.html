@@ -1,0 +1,11 @@
+<div class="product-details container-component">
+  <div class="component-name">product-details</div>
+  <div *ngIf="!product">
+    <app-not-found></app-not-found>
+  </div>
+  <div *ngIf="product">
+    Name: {{product.name}}
+    Price: {{product.price}}
+  </div>
+  <button class="btn btn-primary" (click)="backProducts()">Back</button>
+</div>

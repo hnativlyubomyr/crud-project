@@ -50,6 +50,12 @@ export class ProductsService {
     this.currentProduct.next(product);
   }
 
+  productDetails(id: number): IProduct | null {
+    const product = this.products.find((item:IProduct) => item.id === id);
+
+    return product || null;
+  }
+
   updateProduct(product: IProduct) {
     debugger;
     const { id } = product;
