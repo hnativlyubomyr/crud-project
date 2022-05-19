@@ -13,6 +13,7 @@ import { ProductsService } from "./services/products.service";
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     NotFoundComponent,
     HeaderComponent,
     AddProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

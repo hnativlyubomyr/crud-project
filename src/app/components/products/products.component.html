@@ -4,11 +4,7 @@
   <div>minusCount: {{minusCount}}</div>
 
   <div class="products-container">
-      <app-product
-        *ngFor="let item of products"
-        [product]="item"
-        (changeCount)="changeCount($event)">
-      </app-product>
+    <app-pagination [allItems]="products"></app-pagination>
   </div>
 
 </div>
