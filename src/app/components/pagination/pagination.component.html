@@ -1,0 +1,29 @@
+<div class="pagination-component container-component">
+  <div class="component-name">pagination-component</div>
+  <app-product
+    *ngFor="let item of items"
+    [product]="item"
+  >
+  </app-product>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link">First</a></li>
+      <li class="page-item" (click)="setPage(objPage!.currentPage -1)">
+        <a class="page-link">Previous</a>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let page of objPage!.pages"
+        [ngClass]="{ active: objPage!.currentPage === page}"
+        (click)="setPage(page)"
+      >
+        <a class="page-link">{{page}}</a>
+      </li>
+
+      <li class="page-item" (click)="setPage(objPage!.currentPage +1)">
+        <a class="page-link">Next</a>
+      </li>
+      <li class="page-item"><a class="page-link">last</a></li>
+    </ul>
+  </nav>
+</div>
