@@ -8,7 +8,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { MainComponent } from './components/main/main.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductsService } from "./services/products.service";
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { HttpClientModule } from "@angular/common/http";
@@ -31,6 +31,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [ProductsService],
