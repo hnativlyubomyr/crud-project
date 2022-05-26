@@ -36,6 +36,13 @@
       Update Product
     </button>
   </div>
+
+  <input type="text" [formControl]="myInput">
+
+  <form [formGroup]="myForm">
+    <input type="text" formControlName="formName">
+    <input type="text" formControlName="formPrice">
+  </form>
 </div>
 
 
