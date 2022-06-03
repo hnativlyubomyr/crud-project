@@ -1,10 +1,17 @@
 <div class="add-product-component container-component">
   <div class="component-name">add-product-component</div>
-  <div class="add-product-form">
+
+  <div appMyColor="blue">My text</div>
+
+  <div *appStrucDir>My text 1</div>
+
+
+
+  <div class="add-product-form" [formGroup]="myForm">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
       <input
-        [(ngModel)]="product.name"
+        formControlName="name"
         type="text"
         class="form-control"
         autocomplete="off"
@@ -14,7 +21,7 @@
     <div class="mb-3">
       <label for="price" class="form-label">Price</label>
       <input
-        [(ngModel)]="product.price"
+        formControlName="price"
         type="text"
         class="form-control"
         autocomplete="off"
@@ -35,14 +42,18 @@
     >
       Update Product
     </button>
+    <ul formArrayName="array">
+      <li *ngFor="let item of array; let i = index">
+        <input type="text" [formControlName]="i">
+        <button class="btn btn-sm btn-danger" (click)="removeControl(i)">Delete</button>
+      </li>
+      <button class="btn btn-sm btn-success" (click)="addControl()">Add control</button>
+    </ul>
   </div>
 
   <input type="text" [formControl]="myInput">
 
-  <form [formGroup]="myForm">
-    <input type="text" formControlName="formName">
-    <input type="text" formControlName="formPrice">
-  </form>
+
 </div>
 
 
