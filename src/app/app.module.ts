@@ -14,6 +14,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { HttpClientModule } from "@angular/common/http";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { MyColorDirective } from './directives/my-color.directive';
+import { StrucDirDirective } from './directives/struc-dir.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     HeaderComponent,
     AddProductComponent,
     ProductDetailsComponent,
-    PaginationComponent
+    PaginationComponent,
+    MyColorDirective,
+    StrucDirDirective
   ],
   imports: [
     BrowserModule,

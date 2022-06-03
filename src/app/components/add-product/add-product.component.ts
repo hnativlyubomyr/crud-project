@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { Subscription, Observable, of } from 'rxjs';
-import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormArray, FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { IValidatorError } from "../../models/error.model";
 
 @Component({
@@ -17,13 +25,27 @@ export class AddProductComponent implements OnInit {
 
   product: IProduct = { name: '', price: 0 }
 
-  myInput: FormControl = new FormControl('', [myValidatorLength(2, 5)], []);
-  myForm: FormGroup = new FormGroup({
-    formName: new FormControl('m1'),
-    formPrice: new FormControl('m2'),
+  myInput: FormControl = new FormControl('', [], [myValidatorLengthAsync(2, 5)]);
+
+  // myForm: FormGroup = new FormGroup({
+  //   array: new FormArray([
+  //     new FormControl('c1'),
+  //     new FormControl('c2'),
+  //     new FormControl('c3'),
+  //   ]),
+  //   name: new FormControl('m1'),
+  //   price: new FormControl('m2'),
+  // })
+
+  myForm = this.formBuilder.group({
+    array: this.formBuilder.array(['c1', 'c2', 'c3']),
+    name: this.formBuilder.control('m1'),
+    price: this.formBuilder.control('m1'),
   })
 
-  constructor(private productsService: ProductsService) { }
+  array = (this.myForm.controls.array as FormArray).controls;
+
+  constructor(private productsService: ProductsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.subscription = this.productsService.currentProduct$.subscribe((product: IProduct) => {
@@ -35,6 +57,7 @@ export class AddProductComponent implements OnInit {
       console.log(status);
       console.log(this.myInput.errors);
     })
+
     this.myForm.valueChanges.subscribe(value => console.log(value));
     this.myForm.statusChanges.subscribe(status => {
       console.log(status);
@@ -42,8 +65,20 @@ export class AddProductComponent implements OnInit {
     })
   }
 
+  addControl() {
+    const control = new FormControl('');
+    control.setValidators(myValidatorLength(3,5));
+    //this.array.push(control);
+    (this.myForm.controls.array as FormArray).push(control);
+  }
+
+  removeControl(index: number): void {
+    (this.myForm.controls.array as FormArray).removeAt(index);
+  }
+
   addProduct(product: IProduct) {
-    this.productsService.addProduct(product);
+    if (this.myForm.valid)
+    this.productsService.addProduct(this.myForm.value);
     this.clearFields();
   }
 
